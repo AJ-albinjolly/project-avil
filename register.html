@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:400px;
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:25px;
+}
+
+input{
+
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:16px;
+
+}
+
+input[readonly]{
+    background:#eee;
+}
+
+button{
+
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#1e3a8a;
+    color:white;
+    font-size:18px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+
+}
+
+button:hover{
+    background:#15306d;
+}
+
+p{
+    text-align:center;
+    margin-top:20px;
+}
+
+a{
+    text-decoration:none;
+    color:#1e3a8a;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Smart Book Management System</h1>
+
+<input
+type="text"
+id="fullname"
+placeholder="Full Name"
+required>
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+required>
+
+<input
+type="text"
+id="userID"
+readonly>
+
+<button onclick="registerUser()">
+Sign Up
+</button>
+
+<p>
+    Already have an account?
+    <a href="login.html">Login</a>
+</p>
+
+</div>
+
+<script>
+
+// Generate Random ID
+function generateID(){
+
+    let id="BK"+Math.floor(1000+Math.random()*9000);
+
+    document.getElementById("userID").value=id;
+
+}
+
+// Register Function
+function registerUser(){
+
+    let fullname=document.getElementById("fullname").value;
+
+    let password=document.getElementById("password").value;
+
+    let id=document.getElementById("userID").value;
+
+    if(fullname=="" || password==""){
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+    localStorage.setItem("fullname",fullname);
+
+    localStorage.setItem("userID",id);
+
+    localStorage.setItem("password",password);
+
+    alert("Registration Successful");
+
+    window.location.href="admin.html";
+
+}
+
+// Generate ID when page loads
+window.onload=function(){
+
+    generateID();
+
+}
+
+</script>
+
+</body>
+</html>
